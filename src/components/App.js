@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
-import { FILTER_ALL } from "./../services/filter";
-import { getAll, createNew, updateStatus } from "./../services/todo";
+import { FILTER_ACTIVE } from "./../services/filter";
+import { getAll, addToList } from "./../services/todo";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      filter: FILTER_ALL,
+      filter: FILTER_ACTIVE,
       items: getAll()
     };
   }
@@ -22,7 +22,6 @@ class App extends Component {
             title={title}
             addNew={this.addNew.bind(this)}
             changeFilter={this.changeFilter.bind(this)}
-            changeStatus={this.changeStatus.bind(this)}
             {...this.state}
           />
         </div>
@@ -31,20 +30,13 @@ class App extends Component {
   }
 
   addNew(text) {
-    let item = createNew(text);
-    let updatedList = this.state.items.concat([item]);
+    let updatedList = addToList(this.state.items, { text, completed: false });
 
     this.setState({ items: updatedList });
   }
 
   changeFilter(filter) {
     this.setState({ filter });
-  }
-
-  changeStatus(itemId, completed) {
-    const updatedList = updateStatus(this.state.items, itemId, completed);
-
-    this.setState({ items: updatedList });
   }
 }
 
