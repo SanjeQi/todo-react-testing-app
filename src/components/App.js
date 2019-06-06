@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TodoList from "./TodoList";
 import { FILTER_ACTIVE } from "./../services/filter";
-import { getAll, addToList } from "./../services/todo";
+import { getAll, addToList, updateStatus } from "./../services/todo";
 
 class App extends Component {
   constructor() {
@@ -22,6 +22,7 @@ class App extends Component {
             title={title}
             addNew={this.addNew.bind(this)}
             changeFilter={this.changeFilter.bind(this)}
+            changeStatus={this.changeStatus.bind(this)}
             {...this.state}
           />
         </div>
@@ -37,6 +38,12 @@ class App extends Component {
 
   changeFilter(filter) {
     this.setState({ filter });
+  }
+
+  changeStatus(itemId, completed) {
+    const updatedList = updateStatus(this.state.items, itemId, completed);
+
+    this.setState({ items: updatedList });
   }
 }
 
