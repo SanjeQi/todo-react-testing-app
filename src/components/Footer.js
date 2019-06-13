@@ -1,23 +1,14 @@
 import React from "react";
 import Filter from "./Filter";
-import { MODE_CREATE, MODE_SEARCH } from "./../services/mode";
+import ButtonWrapper from "./ButtonWrapper";
 
 export default function Footer(props) {
-  const { count, filter, changeFilter, mode } = props;
+  const { count, filter, changeFilter } = props;
 
   return (
     <div className="todo-footer clearfix">
       <div className="pull-left buttons">
-        <a
-          title="Add New"
-          className={"button add " + (mode === MODE_CREATE ? "selected" : "")}
-        />
-        <a
-          title="Search"
-          className={
-            "button search " + (mode === MODE_SEARCH ? "selected" : "")
-          }
-        />
+        <ButtonWrapper {...props} />
       </div>
       <div className="pull-left">{`${count} items left`}</div>
       <div className="pull-right">
