@@ -23,7 +23,7 @@ class StateProvider extends Component {
         "changeFilter",
         "changeStatus",
         "changeMode",
-        "search"
+        "setSearchQuery"
       ])
     });
 
@@ -50,7 +50,7 @@ class StateProvider extends Component {
     this.setState({ mode });
   }
 
-  search(text) {
+  setSearchQuery(text) {
     this.setState({ query: text || "" });
   }
 }
