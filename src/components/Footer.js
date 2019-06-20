@@ -6,7 +6,7 @@ export default function Footer(props) {
   const { count, filter, changeFilter } = props;
 
   return (
-    <div className="todo-footer clearfix">
+    <footer className="clearfix">
       <div className="pull-left buttons">
         <ButtonWrapper {...props} />
       </div>
@@ -14,6 +14,6 @@ export default function Footer(props) {
       <div className="pull-right">
         <Filter {...{ filter, changeFilter }} />
       </div>
-    </div>
+    </footer>
   );
 }
