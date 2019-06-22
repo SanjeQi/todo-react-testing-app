@@ -6,6 +6,6 @@ import App from "./components/wrappers/App";
 import "bootstrap/dist/css/bootstrap.css";
 
 // Add our style
-import "./style/index.css";
+import "./assets/style/index.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
