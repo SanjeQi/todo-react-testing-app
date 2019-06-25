@@ -1,19 +1,18 @@
 import React from "react";
-import { getOptions } from "../../services/filter";
+import TodoItem from "./TodoItem";
+import { MSG_NO_ITEMS } from "../../assets/text/en_US";
 
-export default function Filter(props) {
-  const options = getOptions();
-  const { filter, changeFilter } = props;
-  const getClass = key => (key === filter ? "selected" : "");
+export default function FilteredList(props) {
+  const { items, changeStatus } = props;
+
+  if (items.length === 0) {
+    return <p className="alert alert-info">{MSG_NO_ITEMS}</p>;
+  }
 
   return (
-    <ul className="filters list-unstyled clearfix">
-      {Object.keys(options).map(key => (
-        <li key={key}>
-          <a onClick={() => changeFilter(key)} className={getClass(key)}>
-            {options[key]}
-          </a>
-        </li>
+    <ul className="list-unstyled">
+      {items.map(item => (
+        <TodoItem key={item.id} data={item} changeStatus={changeStatus} />
       ))}
     </ul>
   );
